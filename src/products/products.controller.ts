@@ -26,7 +26,7 @@ export class ProductsController {
     return this.productsService.createProduct(dto);
   }
 
-
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.productsService.remove(id);
