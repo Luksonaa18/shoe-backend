@@ -20,6 +20,8 @@ export class AuthController {
   ) {
     const result = await this.authService.login(dto);
 
+    console.log('TOKEN:', result.access_token);
+
     res.cookie('access_token', result.access_token, {
       httpOnly: true,
       secure: true,
@@ -27,9 +29,6 @@ export class AuthController {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return {
-      result: result.message,
-      user: result.user,
-    };
+    return { result: result.message, user: result.user };
   }
 }
