@@ -5,17 +5,18 @@ import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const expressApp = app.getHttpAdapter().getInstance();
+  expressApp.set('trust proxy', 1); // ADD THIS
   app.use(cookieParser());
 
-
-app.enableCors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    process.env.FRONTEND_URL, // <-- add your production frontend URL
-  ],
-  credentials: true,
-});
+  app.enableCors({
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      process.env.FRONTEND_URL, // <-- add your production frontend URL
+    ],
+    credentials: true,
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
