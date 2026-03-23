@@ -13,7 +13,8 @@ async function bootstrap() {
     origin: [
       'http://localhost:3000',
       'http://localhost:3001',
-      process.env.FRONTEND_URL, // <-- add your production frontend URL
+      process.env.FRONTEND_URL,
+      'https://shoe-website-amber-seven.vercel.app', // <-- add your production frontend URL
     ],
     credentials: true,
   });
