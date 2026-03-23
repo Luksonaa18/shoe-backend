@@ -8,10 +8,14 @@ async function bootstrap() {
   app.use(cookieParser());
 
 
-  app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
-    credentials: true,
-  });
+app.enableCors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    process.env.FRONTEND_URL, // <-- add your production frontend URL
+  ],
+  credentials: true,
+});
 
   app.useGlobalPipes(
     new ValidationPipe({
